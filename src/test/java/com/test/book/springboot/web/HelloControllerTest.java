@@ -31,14 +31,17 @@ public class HelloControllerTest {
     }
 
 
+
     @Test
     public void lombok() throws Exception{
         String name="wef";
         int amount = 23;
 
+
         mvc.perform(get("/hello/dto").param("name",name).param("amount",String.valueOf(amount)))
-                .andExpect(status().isOk()).andExpect(jsonPath("$.name").value(name))
-                .andExpect(status().isOk()).andExpect(jsonPath("$.amount").value(amount));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(name))  //json응답값을 필드별로 검증,$를 기준으로 필드명을 명시
+                .andExpect(jsonPath("$.amount").value(amount));
 
     }
 }
