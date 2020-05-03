@@ -20,7 +20,7 @@ public class PostsApiController {
      * @param requestDto
      * @return
      */
-    @PutMapping("/api/v1/posts")
+    @PostMapping("/api/v1/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto){
 
         return postsService.save(requestDto);
