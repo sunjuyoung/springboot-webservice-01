@@ -43,9 +43,19 @@ public class PostsService {
 
     @Transactional
     public List<PostsListResponseDto> findAllDesc(){
+        //postsRepository 결과로 넘어온 Posts의 stream을 map을 통해
+        //PostsListResponseDto변환 -> List로 반환
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+
+    @Transactional
+    public void delete (Long id){
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("해당 사용자가 없습니다"));
+        postsRepository.delete(posts);
     }
 
 
